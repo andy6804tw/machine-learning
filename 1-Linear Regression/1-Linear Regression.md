@@ -2,6 +2,7 @@
 線性回歸（Linear regression）是統計上在找多個自變數(independent variable)和依變數(dependent variable)之間的關係建出來的模型。只有一個自變數和一個依變數的情形稱為簡單線性回歸(Simple linear regression)，大於一個自變數的情形稱為多元回歸(multiple regression)。
 
 簡單線性回歸: y=β0+β1x
+
 β0：截距(Intercept)，β1：斜率(Slope)為 x變動一個單位y變動的量，如下圖:
 
 ![](https://i.imgur.com/5WPSbMm.png)
