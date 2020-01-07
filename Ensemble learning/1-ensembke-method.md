@@ -59,5 +59,10 @@ F(xi)=f1(xi)+f2(xi)+...
 隨機森林也是產生很多棵樹，每一棵也不是很複雜，最後也是將所有的樹 ensemble 在一起，兩者差別在於隨機森林彼此的樹是獨立的並無明確的關係。但是Boosting後面的樹都是希望彌補前面的樹不足的部分，所以這些樹一棵一棵的產生的，我們必須先產生第一棵樹然後第二棵樹在針對第一棵樹不足的地方去做一些補強，第三棵樹再根據前兩棵樹不好的地方在做補強。因為隨機森林的每一棵樹是獨立的因此在產生樹的過程是可以平行化的，預測時也可以各自做各自的最後再合併一起。Gradient Boosting在訓練時由於後面的樹會根據前面的樹不好的地方做補強所以我們只能一棵樹一棵樹單獨的產生。
 
 3. Stacking
+首先產生出m個 base learners(模型)彼此間並互相無關連，例如第一個learner為 logistic regression第二個為決策樹。訓練完m個模型後，我們要把這m個模型合併在一起。合併的方式是我們另外再訓練一個模型，這個模型把ｍ個base learner的輸出當成新的模型的輸入因此我們會根據這m個特徵利用集成式學習其中的演算法來學習一個模型並預測最終結果。最後的 Ensemble model 可以使用線性回歸或是深度神經網路來做學習。總之 Ensemble model 的目的是把每一個 base learners 的輸出當成線索，並把這些線索想辦法做整合來得到最終的答案。另外在進行 Stacking 的時候要注意的是在訓練 m 個 base learners 的訓練資料和訓練 Ensemble model 的資料兩者的訓練資料要不同。
+
+
 - blending weak learners
 
+## Ensemble learning 小結
+Ensemble learning 通常可以讓 base learner 的表現變好，這一點在許多實戰上被驗證了。Ensemble learning有三種類型第一種為 Bagging，第二種為 Boosting，第三種為 Stacking。Bagging 的技術是將訓練資料重新採樣，代表的方法是隨機森林。隨機森林除了 Bagging 之外，還有另一個隨機的因素是每一棵樹都只能看到一部分的特徵，這些特徵是由隨機決定的。Boosting 是一次產生一個新的模型，新的模型的目標是要補強舊的模型表現不好的部分，代表的方法有 AdaBoost 與 Gradient Boosting。 Stacking 指的是我們另外利用一個機器學習的模型來決定各個 base learns 要用什麼的方式做融合。
